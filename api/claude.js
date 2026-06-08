@@ -1,5 +1,4 @@
 export default async function handler(req, res) {
-  // CORS 허용
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -8,15 +7,18 @@ export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
   try {
+    // web_search 툴 제거 (배포 환경에서는 미지원)
+    const body = { ...req.body };
+    if (body.tools) delete body.tools;
+
     const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "x-api-key": process.env.ANTHROPIC_API_KEY,
         "anthropic-version": "2023-06-01",
-        "anthropic-beta": "web-search-2025-03-05",
       },
-      body: JSON.stringify(req.body),
+      body: JSON.stringify(body),
     });
 
     const data = await response.json();
