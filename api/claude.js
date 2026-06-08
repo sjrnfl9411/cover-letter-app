@@ -7,7 +7,6 @@ export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
   try {
-    // web_search 툴 제거 (배포 환경에서는 미지원)
     const body = { ...req.body };
     if (body.tools) delete body.tools;
 
