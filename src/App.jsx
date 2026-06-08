@@ -74,7 +74,7 @@ ${jobContext}
 }
 
 async function callClaude(prompt) {
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
+  const res = await fetch("/api/claude", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -325,20 +325,20 @@ export default function App() {
                   <div style={{ marginBottom: 11 }}>
                     <label style={lbl}>회사명</label>
                     <input value={data.company} onChange={e => set("company", e.target.value)}
-                      placeholder="예: 구름" style={{ ...inp, height: 36, resize: "none" }} />
+                      placeholder="" style={{ ...inp, height: 36, resize: "none" }} />
                   </div>
 
                   <div style={{ marginBottom: 11 }}>
                     <label style={lbl}>지원 직무</label>
                     <input value={data.role} onChange={e => set("role", e.target.value)}
-                      placeholder="예: 교육 운영 매니저" style={{ ...inp, height: 36, resize: "none" }} />
+                      placeholder="" style={{ ...inp, height: 36, resize: "none" }} />
                   </div>
 
                   <div style={{ marginBottom: 11 }}>
                     <label style={lbl}>주요 업무</label>
                     <div style={hint}>채용공고의 주요 업무 내용을 붙여넣어 주세요</div>
                     <textarea value={data.duties} onChange={e => set("duties", e.target.value)}
-                      placeholder="예: 온라인 강의 운영 관리, 수강생 학습 지원, 커리큘럼 기획 등"
+                      placeholder=""
                       style={{ ...inp, minHeight: 72 }} />
                   </div>
 
@@ -346,7 +346,7 @@ export default function App() {
                     <label style={lbl}>우대사항</label>
                     <div style={hint}>채용공고의 우대사항을 붙여넣어 주세요</div>
                     <textarea value={data.preferred} onChange={e => set("preferred", e.target.value)}
-                      placeholder="예: 에듀테크 경험자, Notion 활용 능숙자, 데이터 기반 분석 경험 등"
+                      placeholder=""
                       style={{ ...inp, minHeight: 72 }} />
                   </div>
                 </div>
